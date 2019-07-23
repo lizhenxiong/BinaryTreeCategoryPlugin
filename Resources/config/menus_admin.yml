@@ -1,0 +1,7 @@
+admin_binary_tree_category_manage:
+    name: 新分类
+    parent: admin_operation
+    after: admin_operation_analysis_register
+    children:
+        admin_binary_tree_category:
+            name: 新分类

@@ -1,0 +1,31 @@
+<li id="category-table-body" data-sort-url="{{ path('admin_category_sort') }}">
+  {% if categories|default() is not empty %}
+    <ul class="list-table sortable-list">
+      {% for category in categories %}
+          {{ _self.showChildrenCategory(category) }}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="row empty">{{'admin.category_manage.empty'|trans}}</div>
+  {% endif %}
+</li>
+
+{% macro showChildrenCategory(category) %}
+    <li class="tr">
+      <div class="row row-colapse">
+        <div class="td col-md-7 name" style="padding-left: {{ 24 * (category.layer - 1 ) }}px; overflow: hidden; width: 57%">{{ category.name|default() }}</div>
+        <div class="td col-md-2 code">{{ category.code|default() }}</div>
+        <div class="td col-md-3 operation">
+          <a href="#modal" data-toggle="modal" data-url="{{ path('admin_binary_tree_category_create_children', {parentId: category.id}) }}" class="btn btn-default btn-sm">
+            {{ '添加子分类'|trans }}
+          </a>
+        </div>
+      </div>
+      {% if ((category.rightValue - category.leftValue - 1) / 2) > 0 %}
+        {% set categories = data('ChildrenCategories', {left: category.leftValue, right: category.rightValue, layer: category.layer, type: category.type}) %}
+        {% for category in categories %}
+          {{ _self.showChildrenCategory(category) }}
+        {% endfor %}
+      {% endif %}
+    </li>
+{% endmacro %}

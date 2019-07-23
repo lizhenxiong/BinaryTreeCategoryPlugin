@@ -1,0 +1,34 @@
+{% extends 'old-bootstrap-modal-layout.html.twig' %}
+
+{% set modalSize = 'large' %}
+
+{% block title %}{{ '添加子分类'|trans }}{% endblock %}
+
+{% block body %}
+  <form id="create-children-form" class="form-horizontal" action="{{ path('admin_binary_tree_category_create_children', {parentId: parentCategory.id}) }}" method="post">
+    <div class="row form-group">
+      <div class="col-md-2 control-label">
+        <label for="">{{ '名称'|trans }}</label>
+      </div>
+      <div class="col-md-7 controls">
+        <input type="text" id="name" name="name" class="form-control">
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-2 control-label">
+        <label for="">{{ 'Code'|trans }}</label>
+      </div>
+      <div class="col-md-7 controls">
+        <input type="text" id="code" name="code" class="form-control">
+      </div>
+    </div>
+    <input type="hidden" name="type"  value="{{ parentCategory.type|default() }}">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('site') }}">
+  </form>
+{% endblock %}
+
+{% block footer %}
+  <button id="create-children-btn" data-submiting-text="{{'form.btn.submit.submiting'|trans}}" class="btn btn-primary pull-right" data-toggle="form-submit" data-target="#create-children-form">{{'form.btn.submit'|trans}}</button>
+  <button type="button" class="btn btn-link" data-dismiss="modal">{{'form.btn.cancel'|trans}}</button>
+{% endblock %}

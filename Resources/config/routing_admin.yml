@@ -1,0 +1,11 @@
+admin_binary_tree_category:
+    path: /binary_tree_category
+    defaults: { _controller: BinaryTreeCategoryPlugin:Admin/Category:index }
+
+admin_binary_tree_category_create:
+    path: /binary_tree_category/create
+    defaults: { _controller: BinaryTreeCategoryPlugin:Admin/Category:create }
+
+admin_binary_tree_category_create_children:
+    path: /binary_tree_category/{parentId}/create/children
+    defaults: { _controller: BinaryTreeCategoryPlugin:Admin/Category:createChildren }

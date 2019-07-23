@@ -1,0 +1,21 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set menu = menu|default('admin_binary_tree_category') %}
+
+{% block page_buttons %}
+{% endblock %}
+{% block main %}
+  <form action="" class="form-horizontal">
+    <a href="#modal" data-toggle="modal" data-url="{{ path('admin_binary_tree_category_create') }}" class="btn btn-default btn-primary">新增分类</a>
+  </form>
+  <ul class="list-table" id="category-table" style="margin-bottom: 0">
+    <li class="th" style="border-top: none">
+      <div class="row">
+        <div class="td col-md-7">{{'admin.category_manage.name_th'|trans}}</div>
+        <div class="td col-md-2">{{'admin.category_manage.code_th'|trans}}</div>
+        <div class="td col-md-3">{{'admin.category_manage.operate_th'|trans}}</div>
+      </div>
+    </li>
+    {% include 'BinaryTreeCategoryPlugin::admin/category/tbody.html.twig' %}
+  </ul>
+{% endblock %}

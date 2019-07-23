@@ -10,4 +10,9 @@ class BinaryTreeCategoryPlugin extends PluginBase
     {
         parent::boot();
     }
+
+    public function getEnabledExtensions()
+    {
+        return array('DataTag', 'StatusTemplate', 'DataDict', 'NotificationTemplate');
+    }
 }
